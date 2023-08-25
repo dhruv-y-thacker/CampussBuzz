@@ -1,9 +1,10 @@
 import 'dart:developer';
+import 'package:campusbuzz/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:campusbuzz/emailVerfication.dart';
-import 'Home.dart';
+
 import 'package:auth_handler/auth_handler.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
@@ -55,7 +56,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           .createUserWithEmailAndPassword(
               email: pemailStr, password: ppasswordStr);
                     Navigator.pushReplacement(
-                  context, CupertinoPageRoute(builder: (context) => Home()));        
+                  context, CupertinoPageRoute(builder: (context) => TabsScreen()));        
     } on FirebaseAuthException catch(exp) {
       // Dialog box for User Already Exist
       log("Error occured $exp");

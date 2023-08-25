@@ -1,22 +1,15 @@
-import 'package:campusbuzz_mainui/categories.dart';
-import 'package:campusbuzz_mainui/data/event_list.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
-import 'package:campusbuzz_mainui/screen/category_screen.dart';
+import 'package:campusbuzz/categories.dart';
+import 'package:campusbuzz/data/category_list.dart';
+import 'package:campusbuzz/data/event_list.dart';
+import 'package:campusbuzz/model/event.dart';
+import 'package:campusbuzz/notification.dart';
+import 'package:campusbuzz/screen/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:campusbuzz_mainui/detail_page.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:campusbuzz/detail_page.dart';
 
-import 'package:campusbuzz_mainui/data/category_list.dart';
+import 'package:campusbuzz/data/category_list.dart';
 
-_launchURLBrowser() async {
-  var url = Uri.parse("https://www.geeksforgeeks.org/");
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
 
 // ignore: must_be_immutable
 class Homescreen extends StatefulWidget {
@@ -59,9 +52,11 @@ bool showAllItems = false;
 
 class _HomescreenState extends State<Homescreen> {
   List imageList = [
-    {"id": 1, "image_path": 'images/event1.jpg'},
-    {"id": 2, "image_path": 'images/event3.png'},
-    {"id": 3, "image_path": 'images/event5.webp'}
+    {"id": 4, "image_path": 'images/b1.jpeg'},
+    {"id": 2, "image_path": 'images/b2.jpg'},
+    {"id": 3, "image_path": 'images/b3.jpg'},
+    {"id": 1, "image_path": 'images/hacktopia.png'}
+    
   ];
   //category stuff
 
@@ -79,26 +74,27 @@ class _HomescreenState extends State<Homescreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 10,
+                  horizontal: 0,
+                  vertical: 0,
                 ),
                 child: Row(
                   //top bar
 
                   children: [
-                    Image.asset(
-                      'svg/realloaction.png',
-                      width: 30,
-                    ),
-                    const Text('New bowenaplly',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w400)),
+                   //sized box
+                
+                 Padding(
+                   padding: const EdgeInsets.only(bottom:10,left: 20),
+                   child: Image.asset("assets/images/loggo.png",height: 65,),
+                 ),
+                  
+              
                     GestureDetector(
                       onTap: () {
-                        print("bell icon tapped");
+                       Navigator.push(context, MaterialPageRoute(builder: (context) =>const Notifications(),));
                       },
                       child: const Padding(
-                          padding: EdgeInsets.only(left: 130),
+                          padding: EdgeInsets.only(left: 130,top:18),
                           child: Icon(
                             Icons.notifications_none,
                             size: 30,
@@ -108,9 +104,9 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              // const SizedBox(
+              //   height: 5,
+              // ),
               //search bar
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -1,10 +1,10 @@
-import 'package:campusbuzz_mainui/data/event_list.dart';
-import 'package:campusbuzz_mainui/event_detail_screen.dart';
-import 'package:campusbuzz_mainui/explore_page/explore_page.dart';
+import 'package:campusbuzz/data/event_list.dart';
+import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/explore_page/explore_page.dart';
 import 'package:flutter/material.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
+import 'package:campusbuzz/model/event.dart';
 class Explore extends StatelessWidget {
-    const Explore ({super.key,this.title,required this.event,required this.onToggleFavorite});
+    Explore ({super.key,this.title,required this.event,required this.onToggleFavorite});
 
   final String? title;
   final List<Event> event;
@@ -59,17 +59,17 @@ class Explore extends StatelessWidget {
     }
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
-      appBar: AppBar(title: Center(child: Text(
-                        title!,
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xffE93030),
-                        ),
-                      ),),backgroundColor:Color(0xfff5f5f5),elevation:0,
+      // appBar: AppBar(title: Center(child: Text(
+      //                   title!,
+      //                   style: TextStyle(
+      //                     fontSize: 25,
+      //                     fontWeight: FontWeight.w800,
+      //                     color: Color(0xffE93030),
+      //                   ),
+      //                 ),),backgroundColor:Color(0xfff5f5f5),elevation:0,
       
 
-       ),
+      //  ),
       body: content
     );
   }

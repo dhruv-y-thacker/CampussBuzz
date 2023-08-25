@@ -1,9 +1,9 @@
-import 'package:campusbuzz_mainui/data/event_list.dart';
-import 'package:campusbuzz_mainui/event_detail_screen.dart';
-import 'package:campusbuzz_mainui/explore_page/explore_page.dart';
-import 'package:campusbuzz_mainui/homescreen.dart';
+import 'package:campusbuzz/data/event_list.dart';
+import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/explore_page/explore_page.dart';
+import 'package:campusbuzz/homescreen.dart';
 import 'package:flutter/material.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
+import 'package:campusbuzz/model/event.dart';
 class Explore extends StatelessWidget {
     const Explore ({super.key,this.title,required this.event,required this.onToggleFavorite});
 

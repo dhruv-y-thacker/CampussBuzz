@@ -1,4 +1,5 @@
 import 'package:campusbuzz/emailVerfication.dart';
+import 'package:campusbuzz/nav.dart';
 import 'package:flutter/material.dart';
 import 'welcomeback.dart';
 import "package:firebase_core/firebase_core.dart";
@@ -9,7 +10,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:campusbuzz/emailVerfication.dart';
 import 'package:campusbuzz/main.dart';
-import "Home.dart";
+
 import 'previewScreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -100,7 +101,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     //navigation
     Navigator.pushReplacement(
-        context, CupertinoPageRoute(builder: (context) => Home()));
+        context, CupertinoPageRoute(builder: (context) => Profile()));
   }
 
   void createAccount(BuildContext context) async {
@@ -263,7 +264,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Home(),
+                    builder: (context) => TabsScreen(),
                   ),
                 );
               },

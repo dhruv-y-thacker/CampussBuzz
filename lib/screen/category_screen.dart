@@ -1,7 +1,7 @@
 
-import 'package:campusbuzz_mainui/event_detail_screen.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
-import 'package:campusbuzz_mainui/screen/inside_categ_screen.dart';
+import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/model/event.dart';
+import 'package:campusbuzz/screen/inside_categ_screen.dart';
 import 'package:flutter/material.dart';
 class EventScreen extends StatelessWidget {
   const EventScreen({super.key,required this.Ctitle,required this.events,required this.onToggleFavorite

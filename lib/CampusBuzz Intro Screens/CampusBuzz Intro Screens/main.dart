@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'createaccount.dart';
 import 'welcomeback.dart';
+import 'package:campusbuzz/nav.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
-import "Home.dart";
+
 
 //import 'package:easy_rich_text/easy_rich_text.dart';
 

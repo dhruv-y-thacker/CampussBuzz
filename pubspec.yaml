@@ -28,6 +28,7 @@ dependencies:
   material_design_icons_flutter: ^7.0.7296
   transparent_image: ^2.0.1
   lottie: ^2.6.0
+  image_picker: ^1.0.2
   url_launcher: ^6.0.9
   upi_india: ^3.0.1
   video_player: ^2.7.0  
@@ -50,3 +51,30 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+
+    - assets/images/comp.png
+    - assets/images/dj.png
+    - assets/images/first.jpg
+    - assets/images/forgot.png
+    - assets/images/googleeee.png
+    - assets/images/third.jpg
+    - assets/images/welcome.png
+    - images/event1.jpg
+    - images/event3.png
+    - images/event4.jpg
+    - images/event5.webp
+    - images/dance.jpg
+    - images/music.jpg
+    - images/event.jpg
+    - assets/images/loggo.png
+    - images/b1.jpeg
+    - images/b2.jpg
+    - images/b3.jpg 
+    - images/hacktopia.png
+
+
+
+    
+

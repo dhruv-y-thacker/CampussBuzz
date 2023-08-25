@@ -1,3 +1,4 @@
+import 'package:campusbuzz/nav.dart';
 import 'package:flutter/material.dart';
 import 'welcomeback.dart';
 import "package:firebase_core/firebase_core.dart";
@@ -8,7 +9,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'emailVerfication.dart';
 import 'main.dart';
-import "Home.dart";
+
 import 'previewScreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'frgtpass.dart';
@@ -51,7 +52,7 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
         if (uc.user != null) {
           Navigator.popUntil(context, (route) => route.isFirst);
           Navigator.pushReplacement(
-              context, CupertinoPageRoute(builder: (context) => Home()));
+              context, CupertinoPageRoute(builder: (context) => TabsScreen()));
         }
       } on FirebaseAuthException catch (ex) {
         String lexp = ex.code.toString();
@@ -267,7 +268,7 @@ Widget _buildGoogleSignInBlock(BuildContext context) {
 
     //navigation
     Navigator.pushReplacement(
-        context, CupertinoPageRoute(builder: (context) => Home()));
+        context, CupertinoPageRoute(builder: (context) => TabsScreen()));
   }
   return Column(
     children: [
@@ -291,7 +292,7 @@ Widget _buildGoogleSignInBlock(BuildContext context) {
               child: SizedBox(
                 height: 30,
                 child: Image.asset(
-                    'assets/images/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png'),
+                    'assets/images/googleeee.png'),
               ),
             ),
             const SizedBox(width: 10),

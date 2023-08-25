@@ -1,3 +1,4 @@
+import 'package:campusbuzz/nav.dart';
 import 'package:flutter/material.dart';
 import 'welcomeback.dart';
 import "package:firebase_core/firebase_core.dart";
@@ -8,7 +9,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'emailVerfication.dart';
 import 'main.dart';
-import "Home.dart";
+
 import 'previewScreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -99,7 +100,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     //navigation
     Navigator.pushReplacement(
-        context, CupertinoPageRoute(builder: (context) => Home()));
+        context, CupertinoPageRoute(builder: (context) => TabsScreen()));
   }
 
   void createAccount(BuildContext context) async {
@@ -264,7 +265,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Home(),
+                    builder: (context) => TabsScreen(),//preview homepage
                   ),
                 );
               },
@@ -479,7 +480,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/images/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png', height: 26),
+                    Image.asset('assets/images/googleeee.png', height: 26),
                     const SizedBox(width: 10),
                     const Text(
                       'Continue with Google',

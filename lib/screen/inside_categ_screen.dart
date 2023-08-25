@@ -1,5 +1,5 @@
-import 'package:campusbuzz_mainui/event_detail_screen.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
+import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/model/event.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 

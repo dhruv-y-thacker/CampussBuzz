@@ -1,6 +1,11 @@
-import 'package:campusbuzz_mainui/categories.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
+import 'package:campusbuzz/categories.dart';
+import 'package:campusbuzz/model/event.dart';
 import 'package:flutter/material.dart';//import 'package:campusbuzz_mainui/data/event_list.dart';
+import 'package:campusbuzz/categories.dart';
+import 'package:campusbuzz/model/event.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'dart:developer';
 
 
 // Constants in Dart should be written in lowerCamelcase.
@@ -42,7 +47,7 @@ const AvailableCategories = [
 
 
   //event details
-const Event_details = [
+List<Event> Event_details = [
   Event(
     id: 'm1',
     type:["Near By Events","Popluar Events"],
@@ -121,3 +126,93 @@ const Event_details = [
 
     
 ];
+
+// Future<List<Event>> fetchEventData() async {
+//     // log("inside");
+//     final DatabaseReference ref = FirebaseDatabase.instance
+//         .ref("1tU0BkryAcRBG0GMo4QWvtAH5tnO2u-OHwXY4iCl_A6U")
+//         .child('All Events');
+//     // official id:1NiWJh6N_2MI9V-zhZIkr-3B_2zTkT105ATYsi0SZKlw
+//     List<Event> eventList = [];
+
+//     try {
+//       // log("Started Fetching.....");
+//       DatabaseEvent event = await ref.once();
+//       DataSnapshot snapshot = event.snapshot;
+//       if (snapshot.value != null && snapshot.value is Map<dynamic, dynamic>) {
+//         final eventData = snapshot.value as Map<dynamic, dynamic>;
+
+//         eventData.forEach((eventId, event) {
+//           if (event is Map<dynamic, dynamic>) {
+//             // log("Creaing the List......");
+//             event['Event Id'] = eventId;
+//             eventList.add(
+              
+//               Event(
+//               id: eventId,
+//               categories: event['categories'] ?? '',
+//               date: event['date'] ?? '',
+//               title: event['title'] ?? '',
+//               imageUrl: event['imageUrl'] ?? '',
+//               time: event['time'] ?? '',
+//               college_name: event['collegeName'] ?? '',
+//               about_event_title: event['aboutEventTitle'] ?? '',
+//               about_event_content: event['aboutEventContent'] ?? '',
+//               price: event['price'] ?? 0,
+//             ));
+//           }
+//         });
+//       } else {
+//         log("No data available");
+//       }
+//     } catch (error) {
+//       log("Error retrieving data: $error");
+//     }
+//     return eventList;
+//   }
+
+
+
+//   void printEventDetailsList(List<Event> eventList) {
+//     for (int i = 0; i < eventList.length; i++) {
+//       Event event = eventList[i];
+//       log("Event $i:");
+//       log("ID: ${event.id}");
+//       log("Categories: ${event.categories}");
+//       log("Date: ${event.date}");
+//       log("Title: ${event.title}");
+//       log("Image URL: ${event.imageUrl}");
+//       log("Time: ${event.time}");
+//       log("College Name: ${event.college_name}");
+//       log("About Event Title: ${event.about_event_title}");
+//       log("About Event Content: ${event.about_event_content}");
+//       log("Price: ${event.price}");
+//     }
+//   }
+
+
+
+
+
+
+
+
+// void main() async {
+//   // Fetch event data from Firebase and add it to the 'event' list
+//   List<Event> fetchedEvents = await fetchEventData();
+//   Event_details.addAll(fetchedEvents);
+//   printEventDetailsList(Event_details);
+
+//   // Run the app
+//   runApp(MyApp());
+// }
+
+// // ... Your 'fetchEventData' function remains the same
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // ... Your app configuration
+//     return Container();
+//   }
+// }

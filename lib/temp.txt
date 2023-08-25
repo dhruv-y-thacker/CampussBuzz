@@ -1,0 +1,90 @@
+class Event {
+  final String id;
+  final String categories;
+  final String date;
+  final String title;
+  final String imageUrl;
+  final String time;
+  final String college_name;
+  final String about_event_title;
+  final String about_event_content;
+  final int price;
+
+  Event({
+    required this.id,
+    required this.categories,
+    required this.date,
+    required this.title,
+    required this.imageUrl,
+    required this.time,
+    required this.college_name,
+    required this.about_event_title,
+    required this.about_event_content,
+    required this.price,
+  });
+}
+
+
+
+ List<Event> Event_Details = [];
+
+
+Future<List<Event>> fetchEventData() async {
+     List<Event> eventList = [];
+    // log("inside");
+    final DatabaseReference ref = FirebaseDatabase.instance
+        .ref("1NiWJh6N_2MI9V-zhZIkr-3B_2zTkT105ATYsi0SZKlw")
+        .child('All Events');
+    // official id:1NiWJh6N_2MI9V-zhZIkr-3B_2zTkT105ATYsi0SZKlw
+   
+
+    try {
+      // log("Started Fetching.....");
+      DatabaseEvent event = await ref.once();
+      DataSnapshot snapshot = event.snapshot;
+      if (snapshot.value != null && snapshot.value is Map<dynamic, dynamic>) {
+        final eventData = snapshot.value as Map<dynamic, dynamic>;
+        
+        eventData.forEach((eventId, event) {
+          if (event is Map<dynamic, dynamic>) {
+            // log("Creaing the List......");
+            event['Event Id'] = eventId;
+            eventList.add(Event(
+              id: eventId,
+              categories: event['categories'] ?? '',
+              date: event['date'] ?? '',
+              title: event['title'] ?? '',
+              imageUrl: event['imageUrl'] ?? '',
+              time: event['time'] ?? '',
+              college_name: event['collegeName'] ?? '',
+              about_event_title: event['aboutEventTitle'] ?? '',
+              about_event_content: event['aboutEventContent'] ?? '',
+              price: event['price'] ?? 0,
+            ));
+          }
+        });
+      } else {
+        log("No data available");
+      }
+    } catch (error) {
+      log("Error retrieving data: $error");
+    }
+    return eventList;
+  }
+
+  void check() async {
+ 
+    // log("Inside Check");
+     Event_Details = await fetchEventData();
+
+    log("Event_Details:");
+    printEventDetailsList(Event_Details);
+
+    
+  }
+
+
+
+
+
+

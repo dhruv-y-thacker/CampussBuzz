@@ -1,4 +1,6 @@
+import 'package:campusbuzz/event_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'createaccount.dart';
 import 'welcomeback.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
-import "Home.dart";
+
 
 
 void main() async {
@@ -25,14 +27,18 @@ class OnboardApp extends StatefulWidget {
 class _OnboardAppState extends State<OnboardApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Campus Buzz',
-      theme: ThemeData(primaryColor: Colors.black12),
-      // home: (FirebaseAuth.instance.currentUser != null)
-      //     ? Home()
-      //     : WelcomeBackScreen(),
-      home:OnboardScreens(),
+    return ChangeNotifierProvider(
+      create:(context) => EventLikeNotifier(),
+      child: MaterialApp(
+        
+        debugShowCheckedModeBanner: false,
+        title: 'Campus Buzz',
+        theme: ThemeData(primaryColor: Colors.black12),
+        // home: (FirebaseAuth.instance.currentUser != null)
+        //     ? Home()
+        //     : WelcomeBackScreen(),
+        home:OnboardScreens(),
+      ),
     );
   }
 }

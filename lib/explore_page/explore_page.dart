@@ -1,10 +1,16 @@
-import 'package:campusbuzz_mainui/data/event_list.dart';
-import 'package:campusbuzz_mainui/event_detail_screen.dart';
-import 'package:campusbuzz_mainui/model/event.dart';
+import 'package:campusbuzz/data/event_list.dart';
+import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/model/event.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:like_button/like_button.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'dart:developer';
+
+
+
+
 
 class Explore_list extends StatelessWidget {
   const Explore_list(
@@ -14,6 +20,8 @@ class Explore_list extends StatelessWidget {
       required this.onToggleFavorite});
 
   final Event event;
+    
+
 
   final void Function(Event event) onselectevent;
   final void Function(Event event) onToggleFavorite;
@@ -25,27 +33,27 @@ class Explore_list extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          if (event == Event_details.first) // Add this condition
+           if (event == Event_details.first) // Add this condition
             const Padding(
               padding: EdgeInsets.all(5),
               child: Column(
                 children: [
-                  // Padding(
-                  //   padding: EdgeInsets.only(top: 15,bottom: 10),
-                  //   child: Text(
-                  //     'Explore',
-                  //     style: TextStyle(
-                  //       fontSize: 25,
-                  //       fontWeight: FontWeight.w800,
-                  //       color: Color(0xffE93030),
-                  //     ),
-                  //   ),
-                  // ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 15,bottom: 10),
+                    child: Text(
+                      'Explore',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xffE93030),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           //search
-          if (event == Event_details.first)
+           if (event == Event_details.first)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(

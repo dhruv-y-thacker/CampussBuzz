@@ -1,4 +1,4 @@
-import 'package:campusbuzz_mainui/categories.dart';
+import 'package:campusbuzz/categories.dart';
 import 'package:flutter/material.dart';
 
 
@@ -36,3 +36,54 @@ class Categ extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
