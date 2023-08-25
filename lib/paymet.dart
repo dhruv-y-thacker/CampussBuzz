@@ -43,7 +43,7 @@ class _UpiState extends State<Upi> {
       receiverName: 'Umesh kumar',
       transactionRefId: 'TestingUpiIndiaPlugin',
       transactionNote: 'Not actual. Just an example.',
-      amount: 30.00,
+      amount: 1.00,
       flexibleAmount: false,
     );
   }

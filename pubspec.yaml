@@ -42,6 +42,10 @@ dependencies:
   logger: ^2.0.1
   observe_internet_connectivity: ^1.0.2
   overlay_support: ^2.1.0
+  invoiceninja: ^0.0.11
+  flutter_typeahead: ^4.6.2
+  app_settings: ^5.0.0
+  
   
 
 dev_dependencies:

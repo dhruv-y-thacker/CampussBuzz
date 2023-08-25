@@ -1,4 +1,4 @@
-import 'package:campusbuzz/data/event_list.dart';
+import 'event_list.dart';
 import 'package:campusbuzz/event_detail_screen.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -217,7 +217,20 @@ class _ProfileState extends State<Profile> {
                         color: const Color(0xfff5f5f5),
                         child: Row(
                           children: [
-                            const SizedBox(width: 262, child: Text('newwwwww')),
+                             SizedBox(width: 262, child: Container(
+                              width: 100,
+                              height: 100,
+                            
+                              child:const Padding(
+                                padding:  EdgeInsets.only(top: 30,left: 15),
+                                child:  Text('Hi Bobburi Umesh',style: TextStyle(
+                                fontSize: 25,
+                                color: Color( 0xffF81B1B),
+                                fontWeight:FontWeight.bold ),
+                                ),
+                              )
+                              )
+                              ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Column(

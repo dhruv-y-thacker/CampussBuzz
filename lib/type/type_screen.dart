@@ -1,4 +1,4 @@
-import 'package:campusbuzz/data/event_list.dart';
+import 'package:campusbuzz/event_list.dart';
 import 'package:campusbuzz/event_detail_screen.dart';
 import 'package:campusbuzz/explore_page/explore_page.dart';
 import 'package:campusbuzz/homescreen.dart';

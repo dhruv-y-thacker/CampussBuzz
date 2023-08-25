@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
+_launchurl() async {
+  var url = Uri.parse("https://goo.gl/maps/gFc3LskeRs3zJ82V9");
 
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Cannot launch URL';
+  }
+}
 // ignore: must_be_immutable
 class Detail extends StatelessWidget {
   Detail({super.key});
@@ -251,68 +260,74 @@ class Detail extends StatelessWidget {
                       const SizedBox(
                         height: 7,
                       ),
-                      Divider(
+                    const  Divider(
                         thickness: 1,
                       ),
-                      SizedBox(
+                 const  SizedBox(
                         height: 7,
                       ),
 
                       //location
 
-                      SizedBox(
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              size: 40,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 235,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-
-                                    children: [
-                                      Text(
-                                        "St.Peter’s College,",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      SizedBox(
-                                        height: 1.5,
-                                      ),
-                                      Text(
-                                        "maisammaguda",
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xff8D8D8D)),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            InkWell(
-                              onTap: (){
-                                print("location tapped");
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 0),
-                                child: Icon(Icons.arrow_forward_ios),
+                    GestureDetector(
+                       onTap: (){
+                                  _launchurl();
+                                },
+                      child: Container( 
+                    
+                        child: SizedBox(
+                          child: Row(
+                            children: [
+                           const   Icon(
+                                Icons.location_on_outlined,
+                                size: 40,
                               ),
-                            ),
-                          ],
+                            const  SizedBox(
+                                width: 20,
+                              ),
+                            const  Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: 235,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                    
+                                      children: [
+                                        Text(
+                                          "St.Peter’s College,",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        SizedBox(
+                                          height: 1.5,
+                                        ),
+                                        Text(
+                                          "maisammaguda",
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff8D8D8D)),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              InkWell(
+                               
+                                child:const Padding(
+                                  padding: EdgeInsets.only(left: 0),
+                                  child: Icon(Icons.arrow_forward_ios),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
+                        ),
+                    ),
+                 const   SizedBox(
                         height: 30,
                       ),
                     ],
