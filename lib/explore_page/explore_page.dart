@@ -42,24 +42,24 @@ class Explore_list extends StatelessWidget {
         child: Column(
           children: [
              if (event == Event_details.first) // Add this condition
-              const Padding(
-                padding: EdgeInsets.all(5),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 15,bottom: 10),
-                      child: Text(
-                        'Explore',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xffE93030),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.all(5),
+              //   child: Column(
+              //     children: [
+              //       Padding(
+              //         padding: EdgeInsets.only(top: 15,bottom: 10),
+              //         child: Text(
+              //           'Explore',
+              //           style: TextStyle(
+              //             fontSize: 25,
+              //             fontWeight: FontWeight.w800,
+              //             color: Color(0xffE93030),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             //search
              if (event == Event_details.first)
                     Padding(

@@ -4,7 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:like_button/like_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+_launchurl() async {
+  var url = Uri.parse(
+      "https://www.google.com/maps/place/St.+Peter%E2%80%99s+Engineering+College/@17.5659436,78.4486349,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb8f0aa384c7bd:0x920ffa3cc552278a!8m2!3d17.5659436!4d78.4512098!16s%2Fm%2F0gx2lvy?entry=ttu");
+
+  if (!await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Cannot launch URL';
+  }
+}
 
 class EventDetailScreen extends StatelessWidget {
   const EventDetailScreen({
@@ -19,8 +30,8 @@ class EventDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final eventLikeNotifier = Provider.of<EventLikeNotifier>(context);
-    final isLiked = eventLikeNotifier.isLiked(event.id);
+    // final eventLikeNotifier = Provider.of<EventLikeNotifier>(context);
+    // final isLiked = eventLikeNotifier.isLiked(event.id);
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       body: SafeArea(
@@ -77,15 +88,15 @@ class EventDetailScreen extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Padding(
-                                padding: const EdgeInsets.only(left:2),
-                                child: LikeButton(
-                                  isLiked: isLiked,
-                                  onTap: (liked) async {
-                                    onToggleFavorite(event);
-                                    eventLikeNotifier.toggleLike(event.id);
-                                    return !liked;
-                                  },
-                                ),
+                                padding: const EdgeInsets.only(left: 2),
+                                // child: LikeButton(
+                                //   isLiked: isLiked,
+                                //   onTap: (liked) async {
+                                //     onToggleFavorite(event);
+                                //     eventLikeNotifier.toggleLike(event.id);
+                                //     return !liked;
+                                //   },
+                                // ),
                               ),
                             ),
                           ),
@@ -223,56 +234,66 @@ class EventDetailScreen extends StatelessWidget {
 
                       //location
 
-                      SizedBox(
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              size: 40,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 235,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        event.college_name,
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      SizedBox(
-                                        height: 1.5,
-                                      ),
-                                      Text(
-                                        event.college_name,
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xff8D8D8D)),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print("location tapped");
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 0),
-                                child: Icon(Icons.arrow_forward_ios),
+                      GestureDetector(
+                        onTap: () {
+                          _launchurl();
+                        },
+                        child: SizedBox(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                size: 40,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      _launchurl();
+                                    },
+                                    child: SizedBox(
+                                      width: 235,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            event.college_name,
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          SizedBox(
+                                            height: 1.5,
+                                          ),
+                                          Text(
+                                            event.college_name,
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xff8D8D8D)),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _launchurl();
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 0),
+                                  child: Icon(Icons.arrow_forward_ios),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -284,14 +305,28 @@ class EventDetailScreen extends StatelessWidget {
               ),
 
               //buy button
+              // Column(
+              //   children: [
+              //     Text("Total Price"),
+              //     Row(
+              //       children: [
+              //         Icon(Icons.currency_rupee_outlined,),
+              //         Text("event.price")
+              //       ],
+              //     ),
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: MaterialButton(
                   color: Color(0xff112031),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder:(context) => const Upi(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Upi(),
+                        ));
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(13),
@@ -310,6 +345,8 @@ class EventDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              //   ],
+              // ),
               SizedBox(
                 height: 50,
               ),

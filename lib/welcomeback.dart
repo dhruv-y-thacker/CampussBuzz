@@ -272,38 +272,39 @@ Widget _buildGoogleSignInBlock(BuildContext context) {
   }
   return Column(
     children: [
-      Container(
-        width: 360,
-        height: 53,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: const Color(0xFFEDE8E8),
-          border: Border.all(color: const Color.fromARGB(123, 241, 237, 237)),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
+          GestureDetector(
+             onTap: () {
                 // Handle Google sign in button press
                 sigInviaGoogle(context);
               },
-              child: SizedBox(
-                height: 30,
-                child: Image.asset(
-                    'assets/images/googleeee.png'),
+        child: Container(
+          width: 360,
+          height: 53,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: const Color(0xFFEDE8E8),
+            border: Border.all(color: const Color.fromARGB(123, 241, 237, 237)),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [             
+                 SizedBox(
+                  height: 30,
+                  child: Image.asset(
+                      'assets/images/googleeee.png'),
+                ),
+              
+              const SizedBox(width: 10),
+              const Text(
+                'Sign in with Google',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              'Sign in with Google',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       _buildDivider(),

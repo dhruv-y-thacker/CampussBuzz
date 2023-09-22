@@ -59,17 +59,22 @@ class Explore extends StatelessWidget {
     }
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
-      // appBar: AppBar(title: Center(child: Text(
-      //                   title!,
-      //                   style: TextStyle(
-      //                     fontSize: 25,
-      //                     fontWeight: FontWeight.w800,
-      //                     color: Color(0xffE93030),
-      //                   ),
-      //                 ),),backgroundColor:Color(0xfff5f5f5),elevation:0,
+      appBar: AppBar(title:
+                        Center ( 
+                        child: Padding(
+                          padding: const EdgeInsets.only(right:0),
+                          child: Text(
+                          title!,
+                          style:const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xffE93030),
+                          ),
+                                              ),
+                        ),),backgroundColor:Color(0xfff5f5f5),elevation:0,
       
 
-      //  ),
+        automaticallyImplyLeading: false,),
       body: content
     );
   }

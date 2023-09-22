@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -76,5 +73,17 @@ class DefaultFirebaseOptions {
     androidClientId: '367892879877-8cjspv1j1o0u8hijirvd4ge5s1qr55us.apps.googleusercontent.com',
     iosClientId: '367892879877-anu9j6j0qraqe89nlcobhl4905qsc5fg.apps.googleusercontent.com',
     iosBundleId: 'com.example.campusbuzz',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyC_PkP31QX0S00lz9B1aUoOSNc2VJcnCwg',
+    appId: '1:367892879877:ios:aeee77b892445d41049a6c',
+    messagingSenderId: '367892879877',
+    projectId: 'campusbuzz-936d3',
+    databaseURL: 'https://campusbuzz-936d3-default-rtdb.firebaseio.com',
+    storageBucket: 'campusbuzz-936d3.appspot.com',
+    androidClientId: '367892879877-8cjspv1j1o0u8hijirvd4ge5s1qr55us.apps.googleusercontent.com',
+    iosClientId: '367892879877-mh5s80stqfk0q35f01tm8oopscgt558v.apps.googleusercontent.com',
+    iosBundleId: 'com.example.campusbuzz.RunnerTests',
   );
 }

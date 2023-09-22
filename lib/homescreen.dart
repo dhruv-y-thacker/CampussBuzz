@@ -1,5 +1,6 @@
 import 'package:campusbuzz/categories.dart';
 import 'package:campusbuzz/data/category_list.dart';
+import 'package:campusbuzz/notification_sevices.dart';
 import 'event_list.dart';
 import 'package:campusbuzz/event_detail_screen.dart';
 import 'package:campusbuzz/model/event.dart';
@@ -10,9 +11,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:campusbuzz/detail_page.dart';
 import 'package:get/get.dart';
-
-
-
 
 // ignore: must_be_immutable
 class Homescreen extends StatefulWidget {
@@ -31,7 +29,8 @@ class Homescreen extends StatefulWidget {
 //category
   void _selectCategory(BuildContext context, Categori categori) {
     final filteredEvents =
-        Event_details.where((evnt) => evnt.categories.contains(categori.id)).toList();
+        Event_details.where((evnt) => evnt.categories.contains(categori.id))
+            .toList();
 
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -53,12 +52,27 @@ class Homescreen extends StatefulWidget {
 bool showAllItems = false;
 
 class _HomescreenState extends State<Homescreen> {
+  //  NotificationServices notificationServices = NotificationServices();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    // notificationServices.requestNotificationPermission();
+    // notificationServices.firebaseInit();
+    // // notificationServices.isTokenRefresh();
+    // notificationServices.getDeviceToken().then((value) {
+    //   print('device token');
+    //   print(value);
+    // });
+  }
+
   List imageList = [
     {"id": 4, "image_path": 'images/b1.jpeg'},
     {"id": 2, "image_path": 'images/b2.jpg'},
     {"id": 3, "image_path": 'images/b3.jpg'},
     {"id": 1, "image_path": 'images/hacktopia.png'}
-    
   ];
   //category stuff
 
@@ -71,13 +85,14 @@ class _HomescreenState extends State<Homescreen> {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-        if (currentFocus.hasPrimaryFocus);
+        if (currentFocus.hasPrimaryFocus) ;
         currentFocus.unfocus();
       },
       child: Scaffold(
         backgroundColor: Color(0xfff5f5f5),
         body: SafeArea(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               children: [
                 Padding(
@@ -87,22 +102,28 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   child: Row(
                     //top bar
-    
+
                     children: [
-                     //sized box
-                  
-                   Padding(
-                     padding: const EdgeInsets.only(bottom:10,left: 20),
-                     child: Image.asset("assets/images/loggo.png",height: 65,),
-                   ),
-                    
-                
+                      //sized box
+
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10, left: 20),
+                        child: Image.asset(
+                          "assets/images/loggo.png",
+                          height: 65,
+                        ),
+                      ),
+
                       GestureDetector(
                         onTap: () {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) =>const Notifications(),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Notifications(),
+                              ));
                         },
                         child: const Padding(
-                            padding: EdgeInsets.only(left: 130,top:18),
+                            padding: EdgeInsets.only(left: 130, top: 18),
                             child: Icon(
                               Icons.notifications_none,
                               size: 30,
@@ -112,14 +133,13 @@ class _HomescreenState extends State<Homescreen> {
                     ],
                   ),
                 ),
-                
+
                 // const SizedBox(
                 //   height: 5,
                 // ),
-                
-                
+
                 //search bar
-                
+
                 // Padding(
                 //   padding: const EdgeInsets.symmetric(horizontal: 16),
                 //   child: Container(
@@ -145,77 +165,88 @@ class _HomescreenState extends State<Homescreen> {
                 //     ),
                 //   ),
                 // ),
-    
-                  Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                borderRadius: BorderRadius.circular(23.5)),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                              ),
-                              child: TypeAheadField<Event?>(
-                                hideSuggestionsOnKeyboardHide: true,
-                                textFieldConfiguration: const TextFieldConfiguration(
-                                  decoration: InputDecoration(
-                                     border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                hintText: 'Search anything...',
-                                hintStyle: TextStyle(color: Color(0xffC7C7C7)),
-                                prefixIcon: Icon(
-                                  Icons.search,
-                                  color: Color(0xffc7c7c7),
-                                ),
-                                  ),
-                                ),
-                                suggestionsCallback: EventData.getsuggestions,
-                                itemBuilder: (context, Event? suggestion) {
-                                  final event = suggestion!;
-      
-                                  return ListTile(
-                                    leading: Image.asset(
-                                      event.imageUrl,
-                                      fit: BoxFit.cover,
-                                      width: 50,
-                                      height: 50,
-                                    ),
-                                    title: Text(event.title),
-                                    subtitle: Text(event.college_name),
-                                  );
-                                },
-                                noItemsFoundBuilder: (context) => Container(
-                                  height: 100,
-                                  child: const Center(
-                                    child: Text(
-                                      'No Matches Found.',
-                                      style: TextStyle(fontSize: 24),
-                                    ),
-                                  ),
-                                ),
-                                onSuggestionSelected: (Event? suggestion) {
-                                  final event = suggestion!;
-      
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (ctx) => EventDetailScreen(
-                                        event: event,
-                                        onToggleFavorite: (event) {},
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(23.5)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: TypeAheadField<Event?>(
+                        hideSuggestionsOnKeyboardHide: true,
+                        textFieldConfiguration: const TextFieldConfiguration(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Search anything...',
+                            hintStyle: TextStyle(color: Color(0xffC7C7C7)),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Color(0xffc7c7c7),
                             ),
                           ),
                         ),
+                        //suggestionsCallback: EventData.getsuggestions,  dt
+                        suggestionsCallback: (String query) async {
+                          // Call the function to retrieve data from Firestore
+                          final events = await gettingData();
+
+                          // Filter events based on the query
+                          return events
+                              .where((event) => event.title
+                                  .toLowerCase()
+                                  .contains(query.toLowerCase()))
+                              .toList();
+                        },
+                        itemBuilder: (context, Event? suggestion) {
+                          final event = suggestion!;
+
+                          return ListTile(
+                            leading: Image.asset(
+                              event.imageUrl,
+                              fit: BoxFit.cover,
+                              width: 50,
+                              height: 50,
+                            ),
+                            title: Text(event.title),
+                            subtitle: Text(event.college_name),
+                          );
+                        },
+                        noItemsFoundBuilder: (context) => Container(
+                          height: 100,
+                          child: const Center(
+                            child: Text(
+                              'No Matches Found.',
+                              style: TextStyle(fontSize: 24),
+                            ),
+                          ),
+                        ),
+                        onSuggestionSelected: (Event? suggestion) {
+                          final event = suggestion!;
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (ctx) => EventDetailScreen(
+                                event: event,
+                                onToggleFavorite: (event) {},
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
-    
+
                 //category
-    
+
                 SizedBox(
                   height: 55,
                   child: ListView(
@@ -231,13 +262,13 @@ class _HomescreenState extends State<Homescreen> {
                     ],
                   ),
                 ),
-    
+
                 const SizedBox(height: 5),
-    
+
                 const SizedBox(height: 5),
-    
+
                 //running banner
-    
+
                 Stack(
                   children: [
                     InkWell(
@@ -296,9 +327,9 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                   ],
                 ),
-    
+
                 //nearby events title
-                
+
                 const SizedBox(
                   height: 25,
                 ),
@@ -315,8 +346,9 @@ class _HomescreenState extends State<Homescreen> {
                 const SizedBox(
                   height: 10,
                 ),
-    
+
                 //nearby events list
+
                 SizedBox(
                   height: 200,
                   child: ListView.builder(
@@ -324,13 +356,16 @@ class _HomescreenState extends State<Homescreen> {
                       itemCount: widget.event.length,
                       itemBuilder: (ctx, index) {
                         final event = widget.event[index];
+                        //if (event.type != null && event.type == 'Nearby Events'){
                         return
                             //1st event
+
                             Padding(
                           padding: const EdgeInsets.only(left: 8),
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 0.2),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.2),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             child: Padding(
@@ -341,7 +376,8 @@ class _HomescreenState extends State<Homescreen> {
                                     widget.onselectevent(event);
                                   }, //for navigations or any other function
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 210,
@@ -375,16 +411,20 @@ class _HomescreenState extends State<Homescreen> {
                                                           color: Colors.white,
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(50)),
+                                                                  .circular(
+                                                                      50)),
                                                       child: InkWell(
                                                         onTap: () {
                                                           // Add your onPressed function here
                                                           print('Icon pressed');
-                                                          widget.onToggleFavorite(event);
+                                                          widget
+                                                              .onToggleFavorite(
+                                                                  event);
                                                         },
                                                         child: const Padding(
                                                           padding:
-                                                              EdgeInsets.all(5.0),
+                                                              EdgeInsets.all(
+                                                                  5.0),
                                                           child: Icon(
                                                               Icons.favorite,
                                                               color: Color(
@@ -401,11 +441,11 @@ class _HomescreenState extends State<Homescreen> {
                                         ),
                                       ),
                                       //event info
-    
+
                                       const SizedBox(
                                         height: 8,
                                       ),
-    
+
                                       SizedBox(
                                         child: Column(
                                           children: [
@@ -416,7 +456,8 @@ class _HomescreenState extends State<Homescreen> {
                                                 event.title,
                                                 style: TextStyle(
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                             Padding(
@@ -444,7 +485,8 @@ class _HomescreenState extends State<Homescreen> {
                                                       width: 28,
                                                     ),
                                                     Icon(
-                                                      Icons.watch_later_outlined,
+                                                      Icons
+                                                          .watch_later_outlined,
                                                       size: 15,
                                                     ),
                                                     Text(
@@ -466,11 +508,15 @@ class _HomescreenState extends State<Homescreen> {
                             ),
                           ),
                         );
+                        //                   else {
+                        //   // Return an empty container for events with other types
+                        //   return Container();
+                        // }
                       }),
                 ),
-    
+
                 //popular events title
-    
+
                 const SizedBox(
                   height: 25,
                 ),
@@ -489,9 +535,9 @@ class _HomescreenState extends State<Homescreen> {
                 const SizedBox(
                   height: 10,
                 ),
-    
+
                 //popluar events
-    
+
                 SizedBox(
                   height: 200,
                   child: ListView.builder(
@@ -499,13 +545,15 @@ class _HomescreenState extends State<Homescreen> {
                       itemCount: widget.event.length,
                       itemBuilder: (ctx, index) {
                         final event = widget.event[index];
+                        //.if (event.type != null && event.type == 'popular Events'){
                         return
                             //1st event
                             Padding(
                           padding: const EdgeInsets.only(left: 8),
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 0.2),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.2),
                               borderRadius: BorderRadius.circular(25),
                             ),
                             child: Padding(
@@ -516,7 +564,8 @@ class _HomescreenState extends State<Homescreen> {
                                     widget.onselectevent(event);
                                   }, //for navigations or any other function
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 210,
@@ -550,16 +599,20 @@ class _HomescreenState extends State<Homescreen> {
                                                           color: Colors.white,
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(50)),
+                                                                  .circular(
+                                                                      50)),
                                                       child: InkWell(
                                                         onTap: () {
                                                           // Add your onPressed function here
                                                           print('Icon pressed');
-                                                          widget.onToggleFavorite(event);
+                                                          widget
+                                                              .onToggleFavorite(
+                                                                  event);
                                                         },
                                                         child: const Padding(
                                                           padding:
-                                                              EdgeInsets.all(5.0),
+                                                              EdgeInsets.all(
+                                                                  5.0),
                                                           child: Icon(
                                                               Icons.favorite,
                                                               color: Color(
@@ -576,11 +629,11 @@ class _HomescreenState extends State<Homescreen> {
                                         ),
                                       ),
                                       //event info
-    
+
                                       const SizedBox(
                                         height: 8,
                                       ),
-    
+
                                       SizedBox(
                                         child: Column(
                                           children: [
@@ -591,7 +644,8 @@ class _HomescreenState extends State<Homescreen> {
                                                 event.title,
                                                 style: TextStyle(
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                             Padding(
@@ -619,7 +673,8 @@ class _HomescreenState extends State<Homescreen> {
                                                       width: 28,
                                                     ),
                                                     Icon(
-                                                      Icons.watch_later_outlined,
+                                                      Icons
+                                                          .watch_later_outlined,
                                                       size: 15,
                                                     ),
                                                     Text(
@@ -641,6 +696,10 @@ class _HomescreenState extends State<Homescreen> {
                             ),
                           ),
                         );
+                        //                    else {
+                        //   // Return an empty container for events with other types or null type
+                        //   return Container();
+                        // }
                       }),
                 ),
               ],

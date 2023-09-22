@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>367892879877-mh5s80stqfk0q35f01tm8oopscgt558v.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.367892879877-mh5s80stqfk0q35f01tm8oopscgt558v</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>367892879877-8cjspv1j1o0u8hijirvd4ge5s1qr55us.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC_PkP31QX0S00lz9B1aUoOSNc2VJcnCwg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>367892879877</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.campusbuzz.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>campusbuzz-936d3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>campusbuzz-936d3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:367892879877:ios:aeee77b892445d41049a6c</string>
+	<key>DATABASE_URL</key>
+	<string>https://campusbuzz-936d3-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

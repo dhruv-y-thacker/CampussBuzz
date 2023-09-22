@@ -1,3 +1,11 @@
+// import 'package:campusbuzz/CampusBuzz%20Intro%20Screens/CampusBuzz%20Intro%20Screens/createaccount.dart';
+// import 'package:campusbuzz/CampusBuzz%20Intro%20Screens/CampusBuzz%20Intro%20Screens/main.dart';
+// import 'package:campusbuzz/CampusBuzz%20Intro%20Screens/CampusBuzz%20Intro%20Screens/welcomeback.dart';
+import 'createaccount.dart';
+import 'main.dart';
+import 'welcomeback.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'event_list.dart';
 import 'package:campusbuzz/event_detail_screen.dart';
 import 'dart:io';
@@ -8,6 +16,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:flutter/material.dart';
 import 'package:campusbuzz/event_explore_screen/explore_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+
 
 
 class TabsScreen extends StatefulWidget {
@@ -94,10 +104,11 @@ class _TabsScreen extends State<TabsScreen> {
         children: activePage,
       ),
           bottomNavigationBar: BottomNavigationBar(
+        elevation: 0.0, 
         currentIndex: _selectedPageIndex,
-        selectedItemColor: Colors.red,
+        selectedItemColor: const Color(0xffe93030),
         unselectedItemColor: Colors.black,
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xfff5f5f5),
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
         onTap: _onItemTapped,
         items: [
@@ -127,6 +138,7 @@ class _TabsScreen extends State<TabsScreen> {
               ),
               label: ''),
         ],
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -134,7 +146,7 @@ class _TabsScreen extends State<TabsScreen> {
 
 //profile page
 _launchurl() async {
-  var url = Uri.parse("https://www.youtube.com/playlist?list=WL");
+  var url = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLScEhcRBVl_z4rjwyrrrBy3wqVcDuxEzx_MOAw-a30qgD5DjwQ/viewform");
 
   if (await canLaunchUrl(url)) {
     await launchUrl(url);
@@ -156,6 +168,12 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   File? _pickedImageFile;
+
+  void logOutAccount(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.pushReplacement(
+        context, CupertinoPageRoute(builder: (context) =>OnboardScreens()));}
 
   final List<String> items = [
     'hello',
@@ -201,13 +219,25 @@ class _ProfileState extends State<Profile> {
                         decoration: BoxDecoration(
                           border: Border.all(width: 0.25),
                         ),
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.only(right: 19),
                           child: Center(
-                              child: Text(
-                            'version 0.0.1',
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
-                          )),
+                              child: ElevatedButton(onPressed:(){
+                                AwesomeDialog(
+                                         context: context,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.rightSlide,
+            title: 'Are you Sure?',
+            desc: '',
+            btnCancelOnPress: () {},
+            btnOkOnPress: () {
+  
+              logOutAccount(context);
+            },
+            )..show();
+                                
+                                
+                              }, child: Text('Sign Out'))),
                         ),
                       ); // Adjust
                     }

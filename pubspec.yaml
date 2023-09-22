@@ -45,6 +45,7 @@ dependencies:
   invoiceninja: ^0.0.11
   flutter_typeahead: ^4.6.2
   app_settings: ^5.0.0
+  cloud_firestore: ^4.9.1
   
   
 
@@ -77,6 +78,22 @@ flutter:
     - images/b2.jpg
     - images/b3.jpg 
     - images/hacktopia.png
+    - images/1real.jpg
+    - images/2.png 
+    - images/4.jpg
+    - images/5.jpg 
+    - images/6.jpg 
+    - images/vnrvjiet.jpg
+    - images/jntu.jpg   
+    - images/7.jpg 
+    - images/spec.png 
+    - images/cheri.jpg
+    - images/sahitya.webp
+    - images/dance.jpg
+    - images/malla.jpg
+    - images/bore.jpg
+    - images/rishi.jpg
+    - images/yt.png
 
 
 

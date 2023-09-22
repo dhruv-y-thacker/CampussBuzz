@@ -57,7 +57,11 @@ class EventScreen extends StatelessWidget {
       );
     }
     return Scaffold(
-      appBar: AppBar(title:Text(Ctitle,) ),
+      appBar: AppBar(title:Text(Ctitle,style: const TextStyle(color: Color(0xffe93030), ),),backgroundColor: Color(0xfff5f5f5),  leading: BackButton(
+      color:Color(0xffe93030),
+
+   ),
+   elevation: 0, ),
       body: content,
     );
   }

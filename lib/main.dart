@@ -1,4 +1,6 @@
 import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/homescreen.dart';
+import 'package:campusbuzz/nav.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:campusbuzz/event_list.dart';
@@ -8,15 +10,76 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
-
+import 'model/event.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MaterialApp(home:OnboardApp()));
   
+
+  
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    // options: DefaultFirebaseOptions.currentPlatform
+  );
+  //runApp(MaterialApp(home:OnboardApp()));
+  runApp(
+    FutureBuilder(
+      future:
+          gettingData(), // Assuming gettingData returns a Future<List<Event>>
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          
+          // Data retrieval is complete, build the app
+  //         return MaterialApp(
+  //   title: 'Your App Title',
+  //   home: TabsScreen(),
+  // );
+  return (MaterialApp(home:TabsScreen()));
+
+        } else if (snapshot.hasError) {
+          // Error occurred while fetching data
+          return MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Text("Error fetching data: ${snapshot.error}"),
+              ),
+            ),
+          );
+        } else {
+          // Data retrieval is in progress, show a loading indicator
+          return MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
+        }
+      },
+    ),
+  );
 }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ChangeNotifierProvider(
+//       create: (context) => EventLikeNotifier(),
+//       child: const MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         title: 'Campusbuzz',
+//         home: TabsScreen(),
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
 
 class OnboardApp extends StatefulWidget {
   const OnboardApp({super.key});
@@ -38,7 +101,8 @@ class _OnboardAppState extends State<OnboardApp> {
         // home: (FirebaseAuth.instance.currentUser != null)
         //     ? Home()
         //     : WelcomeBackScreen(),
-        home:OnboardScreens(),
+             home:(FirebaseAuth.instance.currentUser != null) ? TabsScreen():OnboardScreens()
+       
       ),
     );
   }
@@ -76,7 +140,7 @@ class _OnboardScreensState extends State<OnboardScreens> {
       highlightedWord: '',
     ),
         OnboardPage(
-      imageUrl: 'assets/images/third.jpg',
+      imageUrl: 'images/yt.png',
       ttitle: Text(
   'FINDING OUT EVENTS IS ${TextSpan(text: 'EASIER', style: TextStyle(color: Colors.red))} THAN YOU THINK!',
 ),
