@@ -12,6 +12,7 @@ class Event {
     required this.about_event_title,
     required this.about_event_content,
     required this.price,
+    required this.location,
   });
 
   final String id;
@@ -24,7 +25,8 @@ class Event {
   final String college_name;
   final String about_event_title;
   final String about_event_content;
-  final String price;
+  final int price;
+  final String location;
 }
 
 class EventData {
@@ -283,11 +285,11 @@ class EventData {
 
 
 
-  static List<Event> getsuggestions(String query) =>
-      List.of(Event_details).where((Event) {
-        final userLower = Event.title.toLowerCase()+Event.college_name.toLowerCase();
-        final queryLower = query.toLowerCase();
+//   static List<Event> getsuggestions(String query) =>
+//       List.of(Event_details).where((Event) {
+//         final userLower = Event.title.toLowerCase()+Event.college_name.toLowerCase();
+//         final queryLower = query.toLowerCase();
 
-        return userLower.contains(queryLower);
-      }).toList();
-}
+//         return userLower.contains(queryLower);
+//       }).toList();
+ }

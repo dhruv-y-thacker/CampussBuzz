@@ -1,14 +1,18 @@
+import 'package:campusbuzz/Foorms/Foorm.dart';
 import 'package:campusbuzz/model/event.dart';
 import 'package:campusbuzz/paymet.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:like_button/like_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-_launchurl() async {
-  var url = Uri.parse(
-      "https://www.google.com/maps/place/St.+Peter%E2%80%99s+Engineering+College/@17.5659436,78.4486349,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb8f0aa384c7bd:0x920ffa3cc552278a!8m2!3d17.5659436!4d78.4512098!16s%2Fm%2F0gx2lvy?entry=ttu");
+_launchurl(Event event) async {
+
+  var url = Uri.parse(event.location
+       );
 
   if (!await canLaunchUrl(url)) {
     await launchUrl(url);
@@ -236,7 +240,7 @@ class EventDetailScreen extends StatelessWidget {
 
                       GestureDetector(
                         onTap: () {
-                          _launchurl();
+                          _launchurl(event);
                         },
                         child: SizedBox(
                           child: Row(
@@ -253,7 +257,7 @@ class EventDetailScreen extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      _launchurl();
+                                      // _launchurl();
                                     },
                                     child: SizedBox(
                                       width: 235,
@@ -285,7 +289,7 @@ class EventDetailScreen extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  _launchurl();
+                                  _launchurl(event);
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 0),
@@ -325,7 +329,7 @@ class EventDetailScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Upi(),
+                          builder: (context) =>  FormScreen(),
                         ));
                   },
                   child: const Padding(

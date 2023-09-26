@@ -295,6 +295,7 @@ Future<List<Event>> gettingData() async {
         about_event_title: data['about_event_title'],
         about_event_content: data['about_event_content'],
         price: data['price'],
+        location: data['location'],
       );
     }).toList();
 

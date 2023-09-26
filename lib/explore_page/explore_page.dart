@@ -62,70 +62,70 @@ class Explore_list extends StatelessWidget {
               // ),
             //search
              if (event == Event_details.first)
-                    Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(23.5)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                ),
-                                child: TypeAheadField<Event?>(
-                                  hideSuggestionsOnKeyboardHide: true,
-                                  textFieldConfiguration: const TextFieldConfiguration(
-                                    decoration: InputDecoration(
-                                       border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  hintText: 'Search anything...',
-                                  hintStyle: TextStyle(color: Color(0xffC7C7C7)),
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    color: Color(0xffc7c7c7),
-                                  ),
-                                    ),
-                                  ),
-                                  suggestionsCallback: EventData.getsuggestions,
-                                  itemBuilder: (context, Event? suggestion) {
-                                    final event = suggestion!;
+                    // Padding(//abhi karna
+                    //         padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //         child: Container(
+                    //           decoration: BoxDecoration(
+                    //               color: const Color.fromARGB(255, 255, 255, 255),
+                    //               borderRadius: BorderRadius.circular(23.5)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.symmetric(
+                    //               horizontal: 20,
+                    //             ),
+                    //             child: TypeAheadField<Event?>(
+                    //               hideSuggestionsOnKeyboardHide: true,
+                    //               textFieldConfiguration: const TextFieldConfiguration(
+                    //                 decoration: InputDecoration(
+                    //                    border: InputBorder.none,
+                    //               focusedBorder: InputBorder.none,
+                    //               hintText: 'Search anything...',
+                    //               hintStyle: TextStyle(color: Color(0xffC7C7C7)),
+                    //               prefixIcon: Icon(
+                    //                 Icons.search,
+                    //                 color: Color(0xffc7c7c7),
+                    //               ),
+                    //                 ),
+                    //               ),
+                    //               suggestionsCallback: EventData.getsuggestions,
+                    //               itemBuilder: (context, Event? suggestion) {
+                    //                 final event = suggestion!;
         
-                                    return ListTile(
-                                      leading: Image.asset(
-                                        event.imageUrl,
-                                        fit: BoxFit.cover,
-                                        width: 50,
-                                        height: 50,
-                                      ),
-                                      title: Text(event.title),
-                                      subtitle: Text(event.college_name),
-                                    );
-                                  },
-                                  noItemsFoundBuilder: (context) => Container(
-                                    height: 100,
-                                    child: const Center(
-                                      child: Text(
-                                        'No Matches Found.',
-                                        style: TextStyle(fontSize: 24),
-                                      ),
-                                    ),
-                                  ),
-                                  onSuggestionSelected: (Event? suggestion) {
-                                    final event = suggestion!;
+                    //                 return ListTile(
+                    //                   leading: Image.asset(
+                    //                     event.imageUrl,
+                    //                     fit: BoxFit.cover,
+                    //                     width: 50,
+                    //                     height: 50,
+                    //                   ),
+                    //                   title: Text(event.title),
+                    //                   subtitle: Text(event.college_name),
+                    //                 );
+                    //               },
+                    //               noItemsFoundBuilder: (context) => Container(
+                    //                 height: 100,
+                    //                 child: const Center(
+                    //                   child: Text(
+                    //                     'No Matches Found.',
+                    //                     style: TextStyle(fontSize: 24),
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               onSuggestionSelected: (Event? suggestion) {
+                    //                 final event = suggestion!;
         
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (ctx) => EventDetailScreen(
-                                          event: event,
-                                          onToggleFavorite: (event) {},
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
+                    //                 Navigator.of(context).push(
+                    //                   MaterialPageRoute(
+                    //                     builder: (ctx) => EventDetailScreen(
+                    //                       event: event,
+                    //                       onToggleFavorite: (event) {},
+                    //                     ),
+                    //                   ),
+                    //                 );
+                    //               },
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),abhi karna
               
               
               // Padding(
