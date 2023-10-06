@@ -1,3 +1,4 @@
+import 'package:campusbuzz/Nearby.dart';
 import 'package:campusbuzz/categories.dart';
 import 'package:campusbuzz/data/category_list.dart';
 import 'package:campusbuzz/notification_sevices.dart';
@@ -16,7 +17,6 @@ import 'package:get/get.dart';
 class Homescreen extends StatefulWidget {
   const Homescreen(
       {super.key,
-      required this.onToggleFavorite,
       required this.event,
       required this.onselectevent});
   final String url = 'https://www.example.com'; // Replace with your URL
@@ -25,7 +25,7 @@ class Homescreen extends StatefulWidget {
 
   final void Function(Event event) onselectevent;
 
-  final void Function(Event event) onToggleFavorite;
+  // final void Function(Event event) onToggleFavorite;
 //category
   void _selectCategory(BuildContext context, Categori categori) {
     final filteredEvents =
@@ -37,7 +37,7 @@ class Homescreen extends StatefulWidget {
         builder: (ctx) => EventScreen(
           Ctitle: categori.Ctitle,
           events: filteredEvents,
-          onToggleFavorite: onToggleFavorite,
+          // onToggleFavorite: onToggleFavorite,
         ),
       ),
     ); // Navigator.push(context, route)
@@ -232,7 +232,7 @@ class _HomescreenState extends State<Homescreen> {
                             MaterialPageRoute(
                               builder: (ctx) => EventDetailScreen(
                                 event: event,
-                                onToggleFavorite: (event) {},
+                                // onToggleFavorite: (event) {},
                               ),
                             ),
                           );
@@ -349,171 +349,28 @@ class _HomescreenState extends State<Homescreen> {
 
                 //nearby events list
 
-                SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.event.length,
-                      itemBuilder: (ctx, index) {
-                        final event = widget.event[index];
-                        //if (event.type != null && event.type == 'Nearby Events'){
-                        return
-                            //1st event
-
-                            Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.black, width: 0.2),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(0),
-                              child: GestureDetector(
-                                  //insted of inkwell using GestureDetector
-                                  onTap: () {
-                                    widget.onselectevent(event);
-                                  }, //for navigations or any other function
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 210,
-                                        height: 138,
-                                        child: Stack(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              child: Hero(
-                                                tag: "hero1",
-                                                child: Image.asset(
-                                                  event.imageUrl,
-                                                  width: 210,
-                                                  height: 138,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Align(
-                                                  alignment:
-                                                      Alignment.centerRight,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 10, right: 10),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      50)),
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          // Add your onPressed function here
-                                                          print('Icon pressed');
-                                                          widget
-                                                              .onToggleFavorite(
-                                                                  event);
-                                                        },
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  5.0),
-                                                          child: Icon(
-                                                              Icons.favorite,
-                                                              color: Color(
-                                                                  0xffF81B1B),
-                                                              size: 22),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      //event info
-
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-
-                                      SizedBox(
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: 50, left: 5),
-                                              child: Text(
-                                                event.title,
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 6, left: 3),
-                                              child: SizedBox(
-                                                child: Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons
-                                                          .calendar_today_outlined,
-                                                      size: 15,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 4,
-                                                    ),
-                                                    Text(
-                                                      event.date,
-                                                      style: TextStyle(
-                                                          fontSize: 13,
-                                                          fontWeight:
-                                                              FontWeight.w300),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 28,
-                                                    ),
-                                                    Icon(
-                                                      Icons
-                                                          .watch_later_outlined,
-                                                      size: 15,
-                                                    ),
-                                                    Text(
-                                                      event.time,
-                                                      style: TextStyle(
-                                                          fontSize: 13,
-                                                          fontWeight:
-                                                              FontWeight.w300),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  )),
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.event.length,
+                  itemBuilder: (ctx, index) {
+                    final eventItem = widget.event[index];
+                    return EventItemm(
+                      event: eventItem,
+                      onselectevent: (event) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EventDetailScreen(
+                              event: event,
                             ),
                           ),
                         );
-                        //                   else {
-                        //   // Return an empty container for events with other types
-                        //   return Container();
-                        // }
-                      }),
-                ),
+                      },
+                    );
+                  },
+                ),),
 
                 //popular events title
 
@@ -605,9 +462,9 @@ class _HomescreenState extends State<Homescreen> {
                                                         onTap: () {
                                                           // Add your onPressed function here
                                                           print('Icon pressed');
-                                                          widget
-                                                              .onToggleFavorite(
-                                                                  event);
+                                                          // widget
+                                                          //     .onToggleFavorite(
+                                                          //         event);
                                                         },
                                                         child: const Padding(
                                                           padding:

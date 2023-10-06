@@ -46,6 +46,8 @@ dependencies:
   flutter_typeahead: ^4.6.2
   app_settings: ^5.0.0
   cloud_firestore: ^4.9.1
+  flutter_riverpod: ^2.4.0
+ 
   
   
 

@@ -17,7 +17,7 @@ class Explore extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => EventDetailScreen(
           event: event,
-          onToggleFavorite: onToggleFavorite,
+          // onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
@@ -51,7 +51,9 @@ class Explore extends StatelessWidget {
         itemCount: event.length,
         itemBuilder: (ctx, index) => Homescreen(event: event,onselectevent: (event){
           selectEvent(context, event);
-        }, onToggleFavorite: onToggleFavorite,)
+        }, 
+        //  onToggleFavorite: onToggleFavorite,
+         )
       );
     }
 

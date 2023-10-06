@@ -2,6 +2,7 @@ import 'package:campusbuzz/event_detail_screen.dart';
 import 'package:campusbuzz/homescreen.dart';
 import 'package:campusbuzz/nav.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:campusbuzz/event_list.dart';
 import 'createaccount.dart';
@@ -19,43 +20,45 @@ void main() async {
   
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentPlatform
+     options: DefaultFirebaseOptions.currentPlatform
   );
   //runApp(MaterialApp(home:OnboardApp()));
   runApp(
-    FutureBuilder(
-      future:
-          gettingData(), // Assuming gettingData returns a Future<List<Event>>
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          
-          // Data retrieval is complete, build the app
-  //         return MaterialApp(
-  //   title: 'Your App Title',
-  //   home: TabsScreen(),
-  // );
-  return (MaterialApp(home:TabsScreen()));
-
-        } else if (snapshot.hasError) {
-          // Error occurred while fetching data
-          return MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: Text("Error fetching data: ${snapshot.error}"),
+    ProviderScope(
+      child: FutureBuilder(
+        future:
+            gettingData(), // Assuming gettingData returns a Future<List<Event>>
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            
+            // Data retrieval is complete, build the app
+      //         return MaterialApp(
+      //   title: 'Your App Title',
+      //   home: TabsScreen(),
+      // );
+      return (MaterialApp(home:TabsScreen()));
+    
+          } else if (snapshot.hasError) {
+            // Error occurred while fetching data
+            return MaterialApp(
+              home: Scaffold(
+                body: Center(
+                  child: Text("Error fetching data: ${snapshot.error}"),
+                ),
               ),
-            ),
-          );
-        } else {
-          // Data retrieval is in progress, show a loading indicator
-          return MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
+            );
+          } else {
+            // Data retrieval is in progress, show a loading indicator
+            return MaterialApp(
+              home: Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
-            ),
-          );
-        }
-      },
+            );
+          }
+        },
+      ),
     ),
   );
 }
@@ -91,9 +94,8 @@ class OnboardApp extends StatefulWidget {
 class _OnboardAppState extends State<OnboardApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create:(context) => EventLikeNotifier(),
-      child: MaterialApp(
+    return 
+       MaterialApp(
         
         debugShowCheckedModeBanner: false,
         title: 'Campus Buzz',
@@ -103,8 +105,8 @@ class _OnboardAppState extends State<OnboardApp> {
         //     : WelcomeBackScreen(),
              home:(FirebaseAuth.instance.currentUser != null) ? TabsScreen():OnboardScreens()
        
-      ),
-    );
+      );
+    
   }
 }
 

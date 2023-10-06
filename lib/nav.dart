@@ -1,6 +1,9 @@
 // import 'package:campusbuzz/CampusBuzz%20Intro%20Screens/CampusBuzz%20Intro%20Screens/createaccount.dart';
 // import 'package:campusbuzz/CampusBuzz%20Intro%20Screens/CampusBuzz%20Intro%20Screens/main.dart';
 // import 'package:campusbuzz/CampusBuzz%20Intro%20Screens/CampusBuzz%20Intro%20Screens/welcomeback.dart';
+import 'package:campusbuzz/FavProv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'createaccount.dart';
 import 'main.dart';
 import 'welcomeback.dart';
@@ -20,17 +23,17 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 
 
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() {
+ ConsumerState<TabsScreen> createState() {
 
     return _TabsScreen();
   }
 }
 
-class _TabsScreen extends State<TabsScreen> {
+class _TabsScreen extends ConsumerState<TabsScreen> {
 
   final List<Event> _favoriteEvent = [];
 
@@ -46,21 +49,21 @@ class _TabsScreen extends State<TabsScreen> {
   //defin 
   List<Widget> activePage = [];
 
-  void _toggleMealFavoriteStatus(Event event) {
-    final isExisting = _favoriteEvent.contains(event);
+  // void _toggleMealFavoriteStatus(Event event) {
+  //   final isExisting = _favoriteEvent.contains(event);
 
-    if (isExisting) {
-      setState(() {
-        _favoriteEvent.remove(event);
-        _showInfoMessage('Removed from favorites');
-      });
-    } else { 
-      setState(() {
-        _favoriteEvent.add(event);
-        _showInfoMessage('Added to favorites');
-      });
-    }
-  }
+  //   if (isExisting) {
+  //     setState(() {
+  //       _favoriteEvent.remove(event);
+  //       _showInfoMessage('Removed from favorites');
+  //     });
+  //   } else { 
+  //     setState(() {
+  //       _favoriteEvent.add(event);
+  //       _showInfoMessage('Added to favorites');
+  //     });
+  //   }
+  // }
 
   void _selectPage(int index) {
     setState(() {
@@ -76,24 +79,25 @@ class _TabsScreen extends State<TabsScreen> {
   @override
 
   Widget build(BuildContext context) {
+    final favoriteEvent = ref.watch(favoriteEventsProvider);
      activePage = [
-       Homescreen(onToggleFavorite: _toggleMealFavoriteStatus,event: Event_details, onselectevent: (Event event) { 
+       Homescreen(event: Event_details, onselectevent: (Event event) { 
         Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => EventDetailScreen(event: event, onToggleFavorite:_toggleMealFavoriteStatus,),
+          builder: (context) => EventDetailScreen(event: event, ),
         ),
       );
         },),
       Explore(
         title: 'Explore',
         event: Event_details,
-        onToggleFavorite: _toggleMealFavoriteStatus,
+       
       ),
       Explore(
-        event: _favoriteEvent,
+        event: favoriteEvent,
         title: 'Favorites',
-        onToggleFavorite: _toggleMealFavoriteStatus,
+        
       ),
       Profile(),
     ];
@@ -113,6 +117,7 @@ class _TabsScreen extends State<TabsScreen> {
         onTap: _onItemTapped,
         items: [
           const BottomNavigationBarItem(
+            
             icon: Icon(
               Icons.home_outlined,
               size: 35,
