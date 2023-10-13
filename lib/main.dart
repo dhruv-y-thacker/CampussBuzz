@@ -1,17 +1,13 @@
-import 'package:campusbuzz/event_detail_screen.dart';
-import 'package:campusbuzz/homescreen.dart';
+import 'package:campusbuzz/event_list.dart';
 import 'package:campusbuzz/nav.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
-import 'package:campusbuzz/event_list.dart';
+
 import 'createaccount.dart';
-import 'welcomeback.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
-import 'model/event.dart';
+import 'welcomeback.dart';
 
 
 void main() async {
@@ -36,7 +32,11 @@ void main() async {
       //   title: 'Your App Title',
       //   home: TabsScreen(),
       // );
-      return (MaterialApp(home:TabsScreen()));
+      return (MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:TabsScreen()
+        )
+        );
     
           } else if (snapshot.hasError) {
             // Error occurred while fetching data

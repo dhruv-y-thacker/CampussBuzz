@@ -1,18 +1,17 @@
+import 'dart:developer';
+
 import 'package:campusbuzz/categories.dart';
 import 'package:campusbuzz/model/event.dart';
-import 'package:flutter/material.dart'; //import 'package:campusbuzz_mainui/data/event_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'package:firebase_database/firebase_database.dart';
-import 'dart:developer';
+import 'package:flutter/material.dart'; //import 'package:campusbuzz_mainui/data/event_list.dart';
 
 // Constants in Dart should be written in lowerCamelcase.
 const AvailableCategories = [
-  Categori(id: 'c1', Ctitle: 'Fests', color: Color(0xffE93030)),
-  Categori(id: 'c2', Ctitle: 'Sports', color: Color.fromARGB(255, 233, 48, 48)),
-  Categori(id: 'c3', Ctitle: 'Cultural', color: Color(0xffE93030)),
-  Categori(id: 'c4', Ctitle: 'Tech', color: Color(0xffE93030)),
-  Categori(id: 'c5', Ctitle: 'Talks', color: Color(0xffE93030)),
+  Categori(id: 'c1', Ctitle: 'Fests', color: Color.fromARGB(255, 255, 255, 255),categimg: 'images/festt.png'),
+  Categori(id: 'c2', Ctitle: 'Sports', color: Color.fromARGB(83, 255, 255, 255),categimg: 'images/sportt.png'),
+  Categori(id: 'c3', Ctitle: 'Cultural', color: Color.fromARGB(255, 255, 255, 255),categimg: 'images/festt.png'),
+  Categori(id: 'c4', Ctitle: 'Tech', color: Color.fromARGB(92, 255, 255, 255),categimg: 'images/techh.png'),
+  Categori(id: 'c5', Ctitle: 'Talks', color: Color.fromARGB(255, 255, 255, 255),categimg: 'images/sportt.png'),
 ];
 
 //event details

@@ -47,7 +47,17 @@ dependencies:
   app_settings: ^5.0.0
   cloud_firestore: ^4.9.1
   flutter_riverpod: ^2.4.0
- 
+  
+#   flutter_native_splash: ^2.3.2
+
+
+# flutter_native_splash:
+#   image: images/spalsh.png
+#   color: "#42a5f5"
+#   android: true
+#   ios: true
+#   web: false
+#   background_image: "images/spalsh.png"
   
   
 
@@ -96,6 +106,11 @@ flutter:
     - images/bore.jpg
     - images/rishi.jpg
     - images/yt.png
+    - svg/bell_3.png
+    - svg/realloaction.png
+    - images/festt.png
+    - images/sportt.png
+    - images/techh.png
 
 
 

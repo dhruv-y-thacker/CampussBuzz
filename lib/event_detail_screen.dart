@@ -376,15 +376,14 @@
 //     notifyListeners();
 //   }
 
+import 'package:campusbuzz/FavProv.dart';
 //   bool isLiked(String eventId) {
 //     return _likedEventIds.contains(eventId);
 //   }
 // }
 
 import 'package:campusbuzz/Foorms/Foorm.dart';
-import 'package:campusbuzz/Foorms/webform.dart';
 import 'package:campusbuzz/model/event.dart';
-import 'package:campusbuzz/FavProv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readmore/readmore.dart';
@@ -720,8 +719,43 @@ class EventDetailScreen extends ConsumerWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) =>FormScreen ()));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) =>FormScreen ()));
+                    switch (event.categories) {
+      case 'c1':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FormScreen()),
+        );
+        break;
+      case 'c2':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FormScreen()),
+        );
+        break;
+      case 'c3':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FormScreen()),
+        );
+        break;
+      case 'c4':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FormScreen()),
+        );
+        break;
+      case 'c5':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FormScreen()),
+        );
+        break;
+      default:
+        
+        break;
+    }
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(13),

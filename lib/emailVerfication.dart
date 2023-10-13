@@ -1,12 +1,11 @@
 import 'dart:developer';
+
+import 'package:auth_handler/auth_handler.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:campusbuzz/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:campusbuzz/emailVerfication.dart';
-
-import 'package:auth_handler/auth_handler.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -127,7 +126,9 @@ void reSendOtp() async {
     } else {
       try {
         
-        bool checkOTP = await authHandler.verifyOtp(pOtp,otpStr);
+        bool checkOTP = await authHandler.verifyOtp(pOtp
+        //,otpStr
+        );
         if (checkOTP) {
           AwesomeDialog(
             context: context,
