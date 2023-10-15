@@ -2,6 +2,7 @@ import 'package:campusbuzz/Nearby.dart';
 import 'package:campusbuzz/categories.dart';
 import 'package:campusbuzz/data/category_list.dart';
 import 'package:campusbuzz/event_detail_screen.dart';
+import 'package:campusbuzz/location/location.dart';
 import 'package:campusbuzz/model/event.dart';
 import 'package:campusbuzz/screen/category_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -135,11 +136,11 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) => const Notifications(),
-                        //       ));
+                        Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Loc(),
+                              ));
                         print("bell icon tapped");
                       },
                       child: const Padding(
@@ -163,14 +164,14 @@ class _HomescreenState extends State<Homescreen> {
                   decoration: BoxDecoration(
                     color: Color(0xfff5f5f5),
                     borderRadius: BorderRadius.circular(15.5),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.grey.withOpacity(0.7),
-                    //     spreadRadius: -11,
-                    //     blurRadius: 11,
-                    //     offset: Offset(0, 9), // changes position of shadow
-                    //   ),
-                    // ],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.7),
+                        spreadRadius: -11,
+                        blurRadius: 11,
+                        offset: Offset(0, 9), // changes position of shadow
+                      ),
+                    ],
                   ),
                   child: Padding(
                     padding:

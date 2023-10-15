@@ -548,7 +548,8 @@ class EventDetailScreen extends ConsumerWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
                 child: ReadMoreText(
-                  event.about_event_content,
+                  //about_event_content.replaceAll('\\n', '\n'),
+                  event.about_event_content.replaceAll(r'\n', '\n'),
                   trimLines: 10,
                   textAlign: TextAlign.justify,
                   trimMode: TrimMode.Line,

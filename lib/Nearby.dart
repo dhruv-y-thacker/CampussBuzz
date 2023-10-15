@@ -69,6 +69,14 @@ class EventItemm extends ConsumerWidget {
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: Colors.white,
+                                      boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: -4,
+                        blurRadius: 11,
+                        offset: Offset(0, 0), // changes position of shadow
+                      ),
+                    ],
                                       borderRadius: BorderRadius.circular(50)),
                                   child: InkWell(
                                     onTap: () {
