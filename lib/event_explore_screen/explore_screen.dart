@@ -69,67 +69,141 @@ class Explore extends StatelessWidget {
     }
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        appBar: AppBar(
-          toolbarHeight: 75,
-          title: Center(
-            child: Column(
-              children: [
-                // Text(
-                //   title!,
-                //   style: TextStyle(
-                //     fontSize: 25,
-                //     fontWeight: FontWeight.w800,
-                //     color: Color(0xffE93030),
-                //   ),
-                // ),
-                // SizedBox(height: 10,),
-
-                //search bar
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xfff5f5f5),
-                      borderRadius: BorderRadius.circular(15.5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.7),
-                          spreadRadius: -11,
-                          blurRadius: 11,
-                          offset: Offset(0, 9), // changes position of shadow
-                        ),
-                      ],
-                    ),
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverAppBar(
+              floating: true,
+              snap: true,
+            toolbarHeight: 75,
+            title: Center(
+              child: Column(
+                children: [
+                  // Text(
+                  //   title!,
+                  //   style: TextStyle(
+                  //     fontSize: 25,
+                  //     fontWeight: FontWeight.w800,
+                  //     color: Color(0xffE93030),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 10,),
+        
+                  //search bar
+                  InkWell(
+                    onTap: () {
+                          
+                        
+                    },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 3),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.only(top: 14),
-                            border: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            hintText: 'Search for events...',
-                            hintStyle: TextStyle(color: Color(0xff939393)),
-                            prefixIcon: Icon(
-                              Icons.search_rounded,
-                              color: Color(0xff858585),
-                              size: 30,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xfff5f5f5),
+                          borderRadius: BorderRadius.circular(15.5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              spreadRadius: -11,
+                              blurRadius: 11,
+                              offset: Offset(0, 9), // changes position of shadow
                             ),
-                            suffixIcon: Icon(
-                              Icons.mic,
-                              color: Color(0xff525252),
-                              size: 30,
-                            )),
+                          ],
+                        ),
+                      
+                          
+                  
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 3),
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.only(top: 14),
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  hintText: 'Search for events...',
+                                  hintStyle: TextStyle(color: Color(0xff939393)),
+                                  prefixIcon: Icon(
+                                    Icons.search_rounded,
+                                    color: Color(0xff858585),
+                                    size: 30,
+                                  ),
+                                  suffixIcon: Icon(
+                                    Icons.mic,
+                                    color: Color(0xff525252),
+                                    size: 30,
+                                  )),
+                            ),
+                          ),
+                        
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            elevation: 0,
           ),
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-          elevation: 0,
+
+          ],
+
+          body: content,
+          
         ),
-        body: content);
+        );
   }
+}
+
+
+class Customsearch extends SearchDelegate{
+  List<String> allData=['umesh','ramesh','suresh','ganesh'];
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    // TODO: implement buildActions
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    // TODO: implement buildLeading
+    throw UnimplementedError();
+  }
+  
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in allData ){
+      if(item.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(itemCount: matchQuery.length,itemBuilder: (context,index){
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+      );
+
+    });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in allData ){
+      if(item.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(itemCount: matchQuery.length,itemBuilder: (context,index){
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+      );
+
+    });
+  }
+  
+
 }

@@ -138,7 +138,7 @@ class _TabsScreen extends ConsumerState<TabsScreen> {
                 Icons.home_outlined,
                 size: 35,
               ),
-                label: '',
+                label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: _selectedPageIndex == 1
@@ -150,7 +150,7 @@ class _TabsScreen extends ConsumerState<TabsScreen> {
                 MdiIcons.compassOutline,
                 size: 35,
               ),
-                label: '',
+                label: 'Explore',
               ),
               BottomNavigationBarItem(
                 icon: _selectedPageIndex == 2
@@ -162,7 +162,7 @@ class _TabsScreen extends ConsumerState<TabsScreen> {
                 Icons.favorite_border_rounded,
                 size: 35,
               ),
-                label: '',
+                label: 'Liked',
               ),
               BottomNavigationBarItem(
                 icon: _selectedPageIndex == 3
@@ -174,7 +174,7 @@ class _TabsScreen extends ConsumerState<TabsScreen> {
                 Icons.person_outline,
                 size: 35,
               ),
-                label: '',
+                label: 'Profile',
               ),
             ],
                   type: BottomNavigationBarType.fixed,

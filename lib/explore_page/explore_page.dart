@@ -82,7 +82,7 @@ class Explore_list extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Container(
-                    height: 307,
+                    height: 290,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       
@@ -254,6 +254,7 @@ class Explore_list extends ConsumerWidget {
                                         Icon(
                                           Icons.calendar_today_outlined,
                                           size: 15,
+                                          color: Color(0xff646464),
                                         ),
                                         SizedBox(
                                           width: 4,
@@ -262,7 +263,7 @@ class Explore_list extends ConsumerWidget {
                                           event.date,
                                           style: TextStyle(
                                               fontSize: 13,
-                                              fontWeight: FontWeight.w300),
+                                              fontWeight: FontWeight.w300,color: Color(0xff646464)),
                                         ),
                                         SizedBox(
                                           width: 35,
@@ -270,12 +271,13 @@ class Explore_list extends ConsumerWidget {
                                         Icon(
                                           Icons.watch_later_outlined,
                                           size: 15,
+                                          color: Color(0xff646464),
                                         ),
                                         Text(
                                           event.time,
                                           style: TextStyle(
                                               fontSize: 13,
-                                              fontWeight: FontWeight.w300),
+                                              fontWeight: FontWeight.w300,color: Color(0xff646464),),
                                         ),
                                       ],
                                     ),
@@ -286,11 +288,12 @@ class Explore_list extends ConsumerWidget {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left:6.0),
-                                      child: Icon(Icons.location_on_outlined,size: 20,),
+                                      child: Icon(Icons.location_on_outlined,size: 15,color: Color(0xff646464),),
                                     ),
                                     SizedBox(width: 4,),
                                     Text(event.college_name,style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 13,
+                                              color: Color(0xff646464),
                                               fontWeight: FontWeight.w300),)
                                   ],
                                 )

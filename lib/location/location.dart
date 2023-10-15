@@ -3,17 +3,17 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 
-class Loc extends StatefulWidget {
-  const Loc({super.key});
 
+class Loc extends StatefulWidget {
   @override
-  // ignore: library_private_types_in_public_api
   _LocState createState() => _LocState();
 }
 
 class _LocState extends State<Loc> {
   Position? _currentPosition;
-  String _currentAddress = 'Getting your location...';
+  String? _locality;
+  String? _city;
+  String? _postalCode;
 
   @override
   void initState() {
@@ -29,9 +29,6 @@ class _LocState extends State<Loc> {
     if (!serviceEnabled) {
       serviceEnabled = await Geolocator.openLocationSettings();
       if (!serviceEnabled) {
-        setState(() {
-          _currentAddress = 'Location services are disabled.';
-        });
         return;
       }
     }
@@ -40,15 +37,9 @@ class _LocState extends State<Loc> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.deniedForever) {
-        setState(() {
-          _currentAddress = 'Location permissions are denied.';
-        });
         return;
       }
       if (permission == LocationPermission.denied) {
-        setState(() {
-          _currentAddress = 'Location permissions are denied.';
-        });
         return;
       }
     }
@@ -72,24 +63,14 @@ class _LocState extends State<Loc> {
 
       if (placemarks.isNotEmpty) {
         Placemark place = placemarks.first;
-
-        String street = place.street ?? '';
-        String locality = place.locality ?? '';
-        String postalCode = place.postalCode ?? '';
-        String country = place.country ?? '';
-
-        setState(() {
-          _currentAddress = "$street, $locality, $postalCode, $country";
-        });
-      } else {
-        setState(() {
-          _currentAddress = 'Address not found';
-        });
+        _locality = place.locality;
+        _city = place.administrativeArea;
+        _postalCode = place.postalCode;
       }
     } catch (e) {
-      setState(() {
-        _currentAddress = 'Error retrieving address';
-      });
+      _locality = 'Error retrieving location';
+      _city = '';
+      _postalCode = '';
     }
   }
 
@@ -118,25 +99,16 @@ class _LocState extends State<Loc> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Latitude: ${_currentPosition?.latitude ?? 'Loading...'}',
+                'Locality: ${_locality ?? 'Loading...'}',
                 style: const TextStyle(fontSize: 16),
               ),
               Text(
-                'Longitude: ${_currentPosition?.longitude ?? 'Loading...'}',
+                'City: ${_city ?? 'Loading...'}',
                 style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Address:',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
               ),
               Text(
-                _currentAddress,
+                'Postal Code: ${_postalCode ?? 'Loading...'}',
                 style: const TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
               ),
             ],
           ),

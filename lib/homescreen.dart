@@ -88,6 +88,7 @@ class _HomescreenState extends State<Homescreen> {
       child: Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
+        
         child: SingleChildScrollView(
           child: Column(
             children: [
