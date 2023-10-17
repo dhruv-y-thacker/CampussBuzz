@@ -48,22 +48,6 @@ class _TabsScreen extends ConsumerState<TabsScreen> {
   //defin 
   List<Widget> activePage = [];
 
-  // void _toggleMealFavoriteStatus(Event event) {
-  //   final isExisting = _favoriteEvent.contains(event);
-
-  //   if (isExisting) {
-  //     setState(() {
-  //       _favoriteEvent.remove(event);
-  //       _showInfoMessage('Removed from favorites');
-  //     });
-  //   } else { 
-  //     setState(() {
-  //       _favoriteEvent.add(event);
-  //       _showInfoMessage('Added to favorites');
-  //     });
-  //   }
-  // }
-
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;

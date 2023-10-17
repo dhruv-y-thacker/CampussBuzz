@@ -1,9 +1,10 @@
-import 'package:campusbuzz/Nearby.dart';
 import 'package:campusbuzz/categories.dart';
 import 'package:campusbuzz/data/category_list.dart';
 import 'package:campusbuzz/event_detail_screen.dart';
 import 'package:campusbuzz/location/location.dart';
 import 'package:campusbuzz/model/event.dart';
+import 'package:campusbuzz/per_screens/Nearby.dart';
+import 'package:campusbuzz/per_screens/popular.dart';
 import 'package:campusbuzz/screen/category_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -449,15 +450,18 @@ class _HomescreenState extends State<Homescreen> {
               ),
 
               //popluar events
-
-              SizedBox(
+              Container(
+                decoration: BoxDecoration(
+                  //color: Colors.amber,gradient: LinearGradient(colors: Colors.accents)                
+                  ),
+                
                 height: 230,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: widget.event.length,
                   itemBuilder: (ctx, index) {
                     final eventItem = widget.event[index];
-                    return EventItemm(
+                    return EventItemm2(
                       event: eventItem,
                       onselectevent: (event) {
                         Navigator.push(
@@ -473,6 +477,30 @@ class _HomescreenState extends State<Homescreen> {
                   },
                 ),
               ),
+
+              // SizedBox(
+              //   height: 230,
+              //   child: ListView.builder(
+              //     scrollDirection: Axis.horizontal,
+              //     itemCount: widget.event.length,
+              //     itemBuilder: (ctx, index) {
+              //       final eventItem = widget.event[index];
+              //       return EventItemm(
+              //         event: eventItem,
+              //         onselectevent: (event) {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => EventDetailScreen(
+              //                 event: event,
+              //               ),
+              //             ),
+              //           );
+              //         },
+              //       );
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),

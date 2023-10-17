@@ -50,7 +50,7 @@ class EventItemm extends ConsumerWidget {
                               topLeft: Radius.circular(12),
                               topRight: Radius.circular(12)),
                           child: Hero(
-                            tag: "hero1",
+                            tag: 'eventImage_${event.id}',
                             child: Image.asset(
                               event.imageUrl,
                               width: 210,

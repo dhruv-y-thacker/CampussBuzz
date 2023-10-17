@@ -662,7 +662,7 @@ class FormScreenState extends State<FormScreen> {
      return Column(
       children:[
         Padding(
-          padding: const EdgeInsets.only(right: 246,bottom: 5),
+          padding: const EdgeInsets.only(right: 24,bottom: 5),
           child: Row(
             children: [
               Text("Mobile No",style: TextStyle(fontSize: 20),),

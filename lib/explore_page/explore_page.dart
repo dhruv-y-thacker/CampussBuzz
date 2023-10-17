@@ -144,7 +144,7 @@ class Explore_list extends ConsumerWidget {
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15)),
                                   child: Hero(
-                                    tag: "hero1",
+                                    tag: 'eventImage_${event.id}',
                                     child: Image.asset(
                                       event.imageUrl,
                                       width: 370,

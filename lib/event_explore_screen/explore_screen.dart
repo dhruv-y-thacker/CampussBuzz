@@ -68,35 +68,35 @@ class Explore extends StatelessWidget {
       return content;
     }
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        body: NestedScrollView(
-          floatHeaderSlivers: true,
+      
+      backgroundColor: Color(0xfff5f5f5),
+      body: SafeArea(
+        child: NestedScrollView(
+          
+          //floatHeaderSlivers: true,
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               floating: true,
               snap: true,
-            toolbarHeight: 75,
-            title: Center(
-              child: Column(
-                children: [
-                  // Text(
-                  //   title!,
-                  //   style: TextStyle(
-                  //     fontSize: 25,
-                  //     fontWeight: FontWeight.w800,
-                  //     color: Color(0xffE93030),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 10,),
-        
-                  //search bar
-                  InkWell(
-                    onTap: () {
-                          
-                        
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+              toolbarHeight: 70,
+              title: Center(
+                child: Column(
+                  children: [
+                    // Text(
+                    //   title!,
+                    //   style: TextStyle(
+                    //     fontSize: 25,
+                    //     fontWeight: FontWeight.w800,
+                    //     color: Color(0xffE93030),
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10,),
+      
+                    //search bar
+      
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Color(0xfff5f5f5),
@@ -110,100 +110,43 @@ class Explore extends StatelessWidget {
                             ),
                           ],
                         ),
-                      
-                          
-                  
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.only(top: 14),
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  hintText: 'Search for events...',
-                                  hintStyle: TextStyle(color: Color(0xff939393)),
-                                  prefixIcon: Icon(
-                                    Icons.search_rounded,
-                                    color: Color(0xff858585),
-                                    size: 30,
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.mic,
-                                    color: Color(0xff525252),
-                                    size: 30,
-                                  )),
-                            ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 3),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.only(top: 14),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                hintText: 'Search for events...',
+                                hintStyle: TextStyle(color: Color(0xff939393)),
+                                prefixIcon: Icon(
+                                  Icons.search_rounded,
+                                  color: Color(0xff858585),
+                                  size: 30,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.mic,
+                                  color: Color(0xff525252),
+                                  size: 30,
+                                )),
                           ),
-                        
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              elevation: 5,
             ),
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            elevation: 0,
-          ),
-
           ],
-
           body: content,
-          
         ),
-        );
+      ),
+    );
   }
 }
 
 
-class Customsearch extends SearchDelegate{
-  List<String> allData=['umesh','ramesh','suresh','ganesh'];
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    throw UnimplementedError();
-  }
   
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var item in allData ){
-      if(item.toLowerCase().contains(query.toLowerCase())){
-        matchQuery.add(item);
-      }
-    }
-    return ListView.builder(itemCount: matchQuery.length,itemBuilder: (context,index){
-      var result = matchQuery[index];
-      return ListTile(
-        title: Text(result),
-      );
-
-    });
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var item in allData ){
-      if(item.toLowerCase().contains(query.toLowerCase())){
-        matchQuery.add(item);
-      }
-    }
-    return ListView.builder(itemCount: matchQuery.length,itemBuilder: (context,index){
-      var result = matchQuery[index];
-      return ListTile(
-        title: Text(result),
-      );
-
-    });
-  }
-  
-
-}
