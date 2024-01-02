@@ -85,15 +85,13 @@ class AllCategoryItems extends StatelessWidget {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(15.0),
-                                    child: Hero(
-                                      tag: "hero1",
-                                      child: Image.asset(
+                                    child: Image.asset(
                                         'images/event.jpg',
                                         width: 370,
                                         height: 200,
                                         fit: BoxFit.cover,
                                       ),
-                                    ),
+                                    
                                   ),
                                   Column(
                                     children: [

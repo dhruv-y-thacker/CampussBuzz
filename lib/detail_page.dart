@@ -35,13 +35,11 @@ class Detail extends StatelessWidget {
                         borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15)),
-                        child: Hero(
-                            tag: "hero1",
-                            child: Image.asset(
+                        child:Image.asset(
                               'images/event.jpg',
                               width: double.infinity,
                               fit: BoxFit.cover,
-                            ))),
+                            )),
                     Column(
                       children: [
                         Align(
@@ -382,4 +380,3 @@ class Event2 extends StatelessWidget {
   }
 }
 
-     // Hero(tag: "hero1", child: Image.asset('images/event.jpg')),

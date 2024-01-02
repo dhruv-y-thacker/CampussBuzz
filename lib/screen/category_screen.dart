@@ -11,11 +11,11 @@ class EventScreen extends StatelessWidget {
   final List<Event> events;
     // final void Function(Event event) onToggleFavorite;
 
-    void selectEvent(BuildContext context, Event meal) {
+    void selectEvent(BuildContext context, Event event) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => EventDetailScreen(
-          event: meal,
+          event: event,
           // onToggleFavorite: onToggleFavorite,
         ),
       ),
